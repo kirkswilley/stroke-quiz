@@ -422,9 +422,17 @@
 }
 
 
+function closeModal() {
+  const modal = document.getElementById("scoreModal");
+  modal.style.display = "none";
 
- function closeModal() {
-  document.getElementById("scoreModal").style.display = "none";
+  // Force scroll to top after a slight delay to ensure modal is hidden
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.documentElement.scrollTop = 0; // for most browsers
+      document.body.scrollTop = 0;            // for Safari
+    }, 100);
+  });
 }
 
 

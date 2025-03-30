@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Stroke & Rehab Quiz</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: #f4f8fb;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .question {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      border-left: 4px solid #007bff;
+      background: #f9f9f9;
+      border-radius: 6px;
+    }
+
+    .question h3 {
+      margin-top: 0;
+      color: #333;
+    }
+
+    .options {
+      margin-top: 1rem;
+    }
+
+    .options label {
+      display: block;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      background: #fff;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+
+    .options input[type="radio"] {
+      display: none;
+    }
+
+    .options span {
+      display: block;
+      padding: 0.6rem 1rem;
+      border-radius: 5px;
+    }
+
+    .options input[type="radio"]:checked + span {
+      background-color: #e0f0ff;
+      border: 2px solid #007bff;
+    }
+
+    .explanation {
+      display: none;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: #fff3cd;
+      border-left: 4px solid #ffc107;
+      border-radius: 5px;
+    }
+
+    .explanation.show {
+      display: block;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      margin: 1rem 0.5rem 0 0;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    .incorrect {
+      background-color: #f8d7da !important;
+      border-color: #dc3545 !important;
+    }
+
+    .correct-answer {
+      border: 2px solid #28a745;
+      background-color: #d4edda;
+    }
+
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .modal-content {
+      background-color: #fff;
+      margin: 10% auto;
+      padding: 2rem;
+      border: 1px solid #888;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    .gauge {
+      width: 200px;
+      height: 100px;
+      margin: auto;
+    }
+
+    .score-label {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Stroke & Rehabilitation Quiz</h1>
+    <form id="quizForm">
+<div class="question" data-answer="d" data-explanation="The posterior cerebral artery supplies the occipital lobe, which processes visual information.">
+  <h3>1. Which type of stroke commonly is associated with visual impairments?</h3>
+  <div class="options">
+    <label><input type="radio" name="q1" value="a"><span>Right MCA</span></label>
+    <label><input type="radio" name="q1" value="b"><span>Left MCA</span></label>
+    <label><input type="radio" name="q1" value="c"><span>Anterior cerebral artery</span></label>
+    <label><input type="radio" name="q1" value="d"><span>Posterior cerebral artery</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="b" data-explanation="The left MCA typically supplies Broca’s and Wernicke’s areas, which are responsible for language.">
+  <h3>2. Which type of stroke commonly impacts language such as aphasia?</h3>
+  <div class="options">
+    <label><input type="radio" name="q2" value="a"><span>Right MCA</span></label>
+    <label><input type="radio" name="q2" value="b"><span>Left MCA</span></label>
+    <label><input type="radio" name="q2" value="c"><span>Anterior cerebral artery</span></label>
+    <label><input type="radio" name="q2" value="d"><span>Posterior cerebral artery</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="b" data-explanation="Diet is a modifiable lifestyle factor. Age, gender, and genetics are non-modifiable.">
+  <h3>3. What are modifiable risk factors to preventing a stroke from occurring?</h3>
+  <div class="options">
+    <label><input type="radio" name="q3" value="a"><span>Age</span></label>
+    <label><input type="radio" name="q3" value="b"><span>Poor diet</span></label>
+    <label><input type="radio" name="q3" value="c"><span>Gender</span></label>
+    <label><input type="radio" name="q3" value="d"><span>Genetics</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="c" data-explanation="BE FAST: Balance, Eyes, Face, Arms, Speech, and Time (or sudden severe headache).">
+  <h3>4. The warning signs for stroke: BE FAST stand for?</h3>
+  <div class="options">
+    <label><input type="radio" name="q4" value="a"><span>Breathing, Ears, Fingers, Ankles, Speech, Temperature</span></label>
+    <label><input type="radio" name="q4" value="b"><span>Blinking, Energy, Face, Arms, Strength, Talking</span></label>
+    <label><input type="radio" name="q4" value="c"><span>Balance, Eyes, Face, Arms, Speech, Terrible headache</span></label>
+    <label><input type="radio" name="q4" value="d"><span>Brain, Ears, Feet, Arms, Slurred speech, Tiredness</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="d" data-explanation="Aquatic therapy improves balance and ROM through buoyancy and resistance.">
+  <h3>5. Which of the following are research benefits to Aquatic therapy post stroke?</h3>
+  <div class="options">
+    <label><input type="radio" name="q5" value="a"><span>There are no supported benefits</span></label>
+    <label><input type="radio" name="q5" value="b"><span>Improves balance and reduces fall risk</span></label>
+    <label><input type="radio" name="q5" value="c"><span>Increased range of motion due to buoyancy reducing body weight</span></label>
+    <label><input type="radio" name="q5" value="d"><span>B & C are correct</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="c" data-explanation="Studies support both Pilates and HIIT for improving postural stability.">
+  <h3>6. Which fitness methods have been proven to support postural control post stroke?</h3>
+  <div class="options">
+    <label><input type="radio" name="q6" value="a"><span>Pilates</span></label>
+    <label><input type="radio" name="q6" value="b"><span>HIIT</span></label>
+    <label><input type="radio" name="q6" value="c"><span>Both a and b</span></label>
+    <label><input type="radio" name="q6" value="d"><span>Neither a nor b</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="b" data-explanation="Dual-tasking (e.g., recall tasks during movement) trains cognitive and physical functions simultaneously.">
+  <h3>7. Which is an example of adding cognitive tasks while exercising?</h3>
+  <div class="options">
+    <label><input type="radio" name="q7" value="a"><span>30 sec timer exercise</span></label>
+    <label><input type="radio" name="q7" value="b"><span>Listing words starting with a letter while doing squats</span></label>
+    <label><input type="radio" name="q7" value="c"><span>Simulated ADLs with squats and presses</span></label>
+    <label><input type="radio" name="q7" value="d"><span>Walking backwards on a treadmill</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="d" data-explanation="Straps and built-up handles can support grip challenges without removing the exercise entirely.">
+  <h3>8. Adaptation for client with difficulty grasping a dumbbell?</h3>
+  <div class="options">
+    <label><input type="radio" name="q8" value="a"><span>Use a built-up handle</span></label>
+    <label><input type="radio" name="q8" value="b"><span>Use a weightlifting strap</span></label>
+    <label><input type="radio" name="q8" value="c"><span>Lower-body substitution</span></label>
+    <label><input type="radio" name="q8" value="d"><span>Both a and b</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="b" data-explanation="Standing marching challenges balance through weight shifting and postural control.">
+  <h3>9. Which exercise helps to work on balance?</h3>
+  <div class="options">
+    <label><input type="radio" name="q9" value="a"><span>Crunches</span></label>
+    <label><input type="radio" name="q9" value="b"><span>Standing marching</span></label>
+    <label><input type="radio" name="q9" value="c"><span>Bicep curls</span></label>
+    <label><input type="radio" name="q9" value="d"><span>Seated hamstring curls</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="a" data-explanation="Progressing from supported to unsupported step-ups builds strength and confidence gradually.">
+  <h3>10. Progressions for helping a client perform a step up?</h3>
+  <div class="options">
+    <label><input type="radio" name="q10" value="a"><span>Weight shift, seated small step, assisted step-up, unassisted</span></label>
+    <label><input type="radio" name="q10" value="b"><span>Weight shift, high knees, mini squats, step up</span></label>
+    <label><input type="radio" name="q10" value="c"><span>Weight shift, calf raises, lunges, step up with weight</span></label>
+    <label><input type="radio" name="q10" value="d"><span>Weight shift, squat, RDL, step up</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="c" data-explanation="RPE allows clients to communicate effort while tracking changes in endurance or intensity.">
+  <h3>11. Purpose of using the RPE scale?</h3>
+  <div class="options">
+    <label><input type="radio" name="q11" value="a"><span>To track progress</span></label>
+    <label><input type="radio" name="q11" value="b"><span>Self-perception of exertion</span></label>
+    <label><input type="radio" name="q11" value="c"><span>Both a & b</span></label>
+    <label><input type="radio" name="q11" value="d"><span>None of the above</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="a" data-explanation="Proper posture ensures accuracy in blood pressure readings and safety for the client.">
+  <h3>12. Correct positioning when taking blood pressure?</h3>
+  <div class="options">
+    <label><input type="radio" name="q12" value="a"><span>Seated, arm at heart level, feet flat</span></label>
+    <label><input type="radio" name="q12" value="b"><span>Standing, arm hanging loosely</span></label>
+    <label><input type="radio" name="q12" value="c"><span>Seated, arm elevated, legs crossed</span></label>
+    <label><input type="radio" name="q12" value="d"><span>Lying down, arm below heart level</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="b" data-explanation="Seating and monitoring immediately prevents injury and gives time to assess symptoms.">
+  <h3>13. Client stands up and becomes dizzy — what should you do first?</h3>
+  <div class="options">
+    <label><input type="radio" name="q13" value="a"><span>Encourage breathing and wait</span></label>
+    <label><input type="radio" name="q13" value="b"><span>Assist them back to seated</span></label>
+    <label><input type="radio" name="q13" value="c"><span>Have them walk slowly</span></label>
+    <label><input type="radio" name="q13" value="d"><span>Have them count to 10</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="c" data-explanation="Baseline data guides personalized goals and allows for progress tracking over time.">
+  <h3>14. Why take initial measurements before starting a program?</h3>
+  <div class="options">
+    <label><input type="radio" name="q14" value="a"><span>To discourage low fitness clients</span></label>
+    <label><input type="radio" name="q14" value="b"><span>For competition</span></label>
+    <label><input type="radio" name="q14" value="c"><span>To set a baseline and goals</span></label>
+    <label><input type="radio" name="q14" value="d"><span>To lift max weights immediately</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="d" data-explanation="Neuroplasticity is the brain’s way of adapting and recovering through new neural connections.">
+  <h3>15. What is neuroplasticity?</h3>
+  <div class="options">
+    <label><input type="radio" name="q15" value="a"><span>Brain can’t change after childhood</span></label>
+    <label><input type="radio" name="q15" value="b"><span>Muscle adaptation</span></label>
+    <label><input type="radio" name="q15" value="c"><span>Permanent brain damage</span></label>
+    <label><input type="radio" name="q15" value="d"><span>Brain’s ability to form new connections</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="a" data-explanation="Repeating tasks builds stronger neural connections and supports functional recovery.">
+  <h3>16. How to use neuroplasticity principles in training?</h3>
+  <div class="options">
+    <label><input type="radio" name="q16" value="a"><span>Repetitive, task-specific movements</span></label>
+    <label><input type="radio" name="q16" value="b"><span>Random exercise with no progression</span></label>
+    <label><input type="radio" name="q16" value="c"><span>Avoid hard movements</span></label>
+    <label><input type="radio" name="q16" value="d"><span>Use bands only</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="c" data-explanation="Dual-tasking helps with focus, balance, memory, and real-world application of movement.">
+  <h3>17. Can personal trainers use cognitive tasks during exercise?</h3>
+  <div class="options">
+    <label><input type="radio" name="q17" value="a"><span>No, it's distracting</span></label>
+    <label><input type="radio" name="q17" value="b"><span>Only PTs/OTs can</span></label>
+    <label><input type="radio" name="q17" value="c"><span>Yes — it enhances coordination and focus</span></label>
+    <label><input type="radio" name="q17" value="d"><span>Only for rehab, not general fitness</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="b" data-explanation="Maintain bilateral movement and symmetry while respecting limited ROM on the affected side.">
+  <h3>18. How to adapt for client with limited left arm ROM?</h3>
+  <div class="options">
+    <label><input type="radio" name="q18" value="a"><span>Only train right side</span></label>
+    <label><input type="radio" name="q18" value="b"><span>Use both arms, limit ROM on left</span></label>
+    <label><input type="radio" name="q18" value="c"><span>Force stretch beyond range</span></label>
+    <label><input type="radio" name="q18" value="d"><span>Avoid upper body exercises</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="d" data-explanation="Handles should be at wrist crease for upright posture and slight elbow bend.">
+  <h3>19. How to properly adjust a walker?</h3>
+  <div class="options">
+    <label><input type="radio" name="q19" value="a"><span>Tell them not to use it</span></label>
+    <label><input type="radio" name="q19" value="b"><span>Max height</span></label>
+    <label><input type="radio" name="q19" value="c"><span>Lower for leaning forward</span></label>
+    <label><input type="radio" name="q19" value="d"><span>Handles at wrist crease</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+<div class="question" data-answer="c" data-explanation="Bed mobility requires core, glute, and arm strength using transitional exercises.">
+  <h3>20. Best exercises to help client get out of bed easier?</h3>
+  <div class="options">
+    <label><input type="radio" name="q20" value="a"><span>Focus on strength only</span></label>
+    <label><input type="radio" name="q20" value="b"><span>Just upper body</span></label>
+    <label><input type="radio" name="q20" value="c"><span>Seated marches, glute bridges, press-ups</span></label>
+    <label><input type="radio" name="q20" value="d"><span>Only cardio</span></label>
+  </div>
+  <div class="explanation"></div>
+</div>
+
+      <button type="button" class="btn" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+  </div>
+
+  <div id="scoreModal" class="modal">
+    <div class="modal-content">
+      <svg class="gauge" viewBox="0 0 100 50">
+        <path d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#ddd" stroke-width="10" />
+        <path id="gaugeFill" d="M10 50 A40 40 0 0 1 90 50" fill="none" stroke="#28a745" stroke-width="10" stroke-dasharray="0 100" />
+      </svg>
+      <div class="score-label" id="scoreText">0 / 20 Correct</div>
+      <button class="btn" onclick="reviewAnswers(); closeModal();">Review Missed Questions</button>
+    </div>
+  </div>
+
+  <script>
+    function submitQuiz() {
+      const questions = document.querySelectorAll('.question');
+      let score = 0;
+
+      questions.forEach(q => {
+        const selected = q.querySelector('input[type="radio"]:checked');
+        const correct = q.dataset.answer;
+        if (selected && selected.value === correct) {
+          score++;
+        }
+      });
+
+      // Update gauge
+      const percent = (score / questions.length) * 100;
+      const dash = (percent / 100) * 126; // circumference of arc
+      const gauge = document.getElementById("gaugeFill");
+      gauge.setAttribute("stroke-dasharray", `${dash} 126`);
+
+      // Update score text
+      document.getElementById("scoreText").innerText = `${score} / ${questions.length} Correct`;
+
+      // Show modal
+      document.getElementById("scoreModal").style.display = "block";
+    }
+
+    function reviewAnswers() {
+      const questions = document.querySelectorAll('.question');
+
+      questions.forEach(q => {
+        const selected = q.querySelector('input[type="radio"]:checked');
+        const correct = q.dataset.answer;
+        const explanation = q.querySelector('.explanation');
+        const options = q.querySelectorAll('input[type="radio"]');
+
+        options.forEach(opt => {
+          const span = opt.nextElementSibling;
+          if (opt.value === correct) {
+            span.classList.add('correct-answer');
+          }
+          if (selected && opt.checked && opt.value !== correct) {
+            span.classList.add('incorrect');
+          }
+        });
+
+        if (!selected || selected.value !== correct) {
+          explanation.innerText = q.dataset.explanation;
+          explanation.classList.add('show');
+        }
+      });
+    }
+
+    function closeModal() {
+      document.getElementById("scoreModal").style.display = "none";
+    }
+  </script>
+</body>
+</html>

@@ -394,7 +394,6 @@
     }
 
    function reviewAnswers() {
-  window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 Add this here
 
   const questions = document.querySelectorAll('.question');
 
@@ -422,9 +421,14 @@
 }
 
 
-    function closeModal() {
-      document.getElementById("scoreModal").style.display = "none";
-    }
+  function closeModal() {
+  document.getElementById("scoreModal").style.display = "none";
+
+  // Smooth scroll to top after modal closes
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 200);
+}
   </script>
 </body>
 </html>

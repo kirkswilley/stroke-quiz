@@ -393,31 +393,34 @@
       document.getElementById("scoreModal").style.display = "block";
     }
 
-    function reviewAnswers() {
-      const questions = document.querySelectorAll('.question');
+   function reviewAnswers() {
+  window.scrollTo({ top: 0, behavior: 'smooth' }); // 👈 Add this here
 
-      questions.forEach(q => {
-        const selected = q.querySelector('input[type="radio"]:checked');
-        const correct = q.dataset.answer;
-        const explanation = q.querySelector('.explanation');
-        const options = q.querySelectorAll('input[type="radio"]');
+  const questions = document.querySelectorAll('.question');
 
-        options.forEach(opt => {
-          const span = opt.nextElementSibling;
-          if (opt.value === correct) {
-            span.classList.add('correct-answer');
-          }
-          if (selected && opt.checked && opt.value !== correct) {
-            span.classList.add('incorrect');
-          }
-        });
+  questions.forEach(q => {
+    const selected = q.querySelector('input[type="radio"]:checked');
+    const correct = q.dataset.answer;
+    const explanation = q.querySelector('.explanation');
+    const options = q.querySelectorAll('input[type="radio"]');
 
-        if (!selected || selected.value !== correct) {
-          explanation.innerText = q.dataset.explanation;
-          explanation.classList.add('show');
-        }
-      });
+    options.forEach(opt => {
+      const span = opt.nextElementSibling;
+      if (opt.value === correct) {
+        span.classList.add('correct-answer');
+      }
+      if (selected && opt.checked && opt.value !== correct) {
+        span.classList.add('incorrect');
+      }
+    });
+
+    if (!selected || selected.value !== correct) {
+      explanation.innerText = q.dataset.explanation;
+      explanation.classList.add('show');
     }
+  });
+}
+
 
     function closeModal() {
       document.getElementById("scoreModal").style.display = "none";

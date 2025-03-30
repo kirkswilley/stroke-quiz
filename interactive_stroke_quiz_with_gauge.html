@@ -418,21 +418,18 @@
       explanation.classList.add('show');
     }
   });
+       // 💡 Add this here — now that explanations are showing
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 100);
 }
+
 
 
  function closeModal() {
-  const modal = document.getElementById("scoreModal");
-  modal.style.display = "none";
-
-  // Force scroll to top after a slight delay to ensure modal is hidden
-  requestAnimationFrame(() => {
-    setTimeout(() => {
-      document.documentElement.scrollTop = 0; // for most browsers
-      document.body.scrollTop = 0;            // for Safari
-    }, 100);
-  });
+  document.getElementById("scoreModal").style.display = "none";
 }
+
 
   </script>
 </body>
